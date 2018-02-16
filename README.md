@@ -42,6 +42,8 @@ export default WithModal({
 # css
 You can find the css required by the modal in the 'pop-modal/dist/modal.css' file in your node_modules. It's very likely that you will need to do some adjustments to this css file so it's better to just copy it from here and edit it the way you need it.
 
+The modal itself has four transition classes: closed > opening > open > closing. So you can customize the transition of the modal.
+
 ```javascript
 import 'pop-modal/dist/modal.css'
 ```
@@ -66,8 +68,6 @@ export default class Page extends Component {
                 <button className='btn btn-primary' type='button' onClick={
                     () => { openPopup() }
                 }>Open modal</button>
-                <hr />
-                <a href="https://github.com/voodoo-child/pop-modal">project on Github</a>
                 <Modal>
                     <h1>Hello from Pop Modal</h1>
                 </Modal>
@@ -97,8 +97,6 @@ class Page extends Component {
                 <button className='btn btn-primary' type='button' onClick={
                     () => { openPopup() }
                 }>Open modal</button>
-                <hr />
-                <a href="https://github.com/voodoo-child/pop-modal">project on Github</a>
                 <Modal>
                     <h1>Hello from Pop Modal</h1>
                 </Modal>
