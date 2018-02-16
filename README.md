@@ -21,7 +21,7 @@ to render something inside the modal just wrapp it inside Modal prop of Componen
     const { Modal } = this.props
     return (
         <Modal>
-            <h1>Hello fro Pop Modal</h1>
+            <h1>Hello from Pop Modal</h1>
         </Modal>
     )
 }
@@ -69,7 +69,7 @@ export default class Page extends Component {
                 <hr />
                 <a href="https://github.com/voodoo-child/pop-modal">project on Github</a>
                 <Modal>
-                    <h1>Hello fro Pop Modal</h1>
+                    <h1>Hello from Pop Modal</h1>
                 </Modal>
             </div>
         )
@@ -100,7 +100,7 @@ class Page extends Component {
                 <hr />
                 <a href="https://github.com/voodoo-child/pop-modal">project on Github</a>
                 <Modal>
-                    <h1>Hello fro Pop Modal</h1>
+                    <h1>Hello from Pop Modal</h1>
                 </Modal>
             </div>
         )
