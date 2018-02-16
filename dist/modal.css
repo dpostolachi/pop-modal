@@ -1,0 +1,199 @@
+@-moz-keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-o-keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@-moz-keyframes modalConntainerFadeIn {
+  from {
+    opacity: 0;
+    left: -100px;
+  }
+  to {
+    opacity: 1;
+    left: 0px;
+  }
+}
+@-webkit-keyframes modalConntainerFadeIn {
+  from {
+    opacity: 0;
+    left: -100px;
+  }
+  to {
+    opacity: 1;
+    left: 0px;
+  }
+}
+@-o-keyframes modalConntainerFadeIn {
+  from {
+    opacity: 0;
+    left: -100px;
+  }
+  to {
+    opacity: 1;
+    left: 0px;
+  }
+}
+@keyframes modalConntainerFadeIn {
+  from {
+    opacity: 0;
+    left: -100px;
+  }
+  to {
+    opacity: 1;
+    left: 0px;
+  }
+}
+@-moz-keyframes modalConntainerFadeOut {
+  from {
+    opacity: 1;
+    left: 0px;
+  }
+  to {
+    opacity: 0;
+    left: 100px;
+  }
+}
+@-webkit-keyframes modalConntainerFadeOut {
+  from {
+    opacity: 1;
+    left: 0px;
+  }
+  to {
+    opacity: 0;
+    left: 100px;
+  }
+}
+@-o-keyframes modalConntainerFadeOut {
+  from {
+    opacity: 1;
+    left: 0px;
+  }
+  to {
+    opacity: 0;
+    left: 100px;
+  }
+}
+@keyframes modalConntainerFadeOut {
+  from {
+    opacity: 1;
+    left: 0px;
+  }
+  to {
+    opacity: 0;
+    left: 100px;
+  }
+}
+.popModal {
+  display: block;
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  max-height: 100vh;
+  line-height: 100vh;
+  top: 0px;
+  left: 0px;
+  z-index: 20;
+  text-align: center;
+  overflow: auto;
+  background: rgba(0,0,0,0.7);
+}
+.popModal.closed {
+  display: none;
+}
+.popModal.opening {
+  animation: modalFadeIn 1s;
+}
+.popModal.opening .popModalContainer {
+  opacity: 0;
+  display: none;
+}
+.popModal.closing {
+  animation: modalFadeOut 1s;
+}
+.popModal.open .popModalContainer {
+  animation: modalConntainerFadeIn 0.5s;
+}
+.popModalClose {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  font-size: 3rem;
+  background: none;
+  padding: 0;
+  border: none;
+  color: #fff;
+  width: 3.2rem;
+  height: 3.2rem;
+  line-height: 3.2rem;
+  top: 12px;
+  right: 22px;
+}
+.popModalContainer {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  text-align: left;
+  color: #fff;
+  position: relative;
+  position: relative;
+  max-width: 100%;
+}
