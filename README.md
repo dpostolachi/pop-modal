@@ -28,7 +28,7 @@ to render something inside the modal just wrapp it inside Modal prop of Componen
 ```
 
 # configuring
-To add Modal to a React Component you must pass a config object with timeouts for opening/closing the modal and the Component that will receive modal's props.
+To add Modal to a React Component you must pass a config object with timeouts for opening/closing the modal and the Component that will receive modal's props. Don't forget to synchronize your timings with the ones from css.
 
 ```javascript
 import WithModal from 'pop-modal'
