@@ -12,6 +12,15 @@ export default ( options ) => {
             outsideClickClose: false,
         }
 
+    if ( typeof options.timings === 'undefined' )
+        options.timings = {
+            open: 1000,
+            close: 500,
+        }
+
+    if ( typeof options.outsideClickClose === 'undefined' )
+        options.outsideClickClose = false
+
     return ( Comp ) => {
 
         return class Modal extends Component {

@@ -31,6 +31,13 @@ exports.default = function (options) {
         outsideClickClose: false
     };
 
+    if (typeof options.timings === 'undefined') options.timings = {
+        open: 1000,
+        close: 500
+    };
+
+    if (typeof options.outsideClickClose === 'undefined') options.outsideClickClose = false;
+
     return function (Comp) {
 
         return function (_Component) {
