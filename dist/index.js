@@ -21,11 +21,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 // It's an generator
-exports.default = function (timings) {
+exports.default = function (options) {
 
-    if (typeof timings === 'undefined') timings = {
-        open: 1000,
-        close: 500
+    if (typeof options === 'undefined') options = {
+        timings: {
+            open: 1000,
+            close: 500
+        },
+        outsideClickClose: false
     };
 
     return function (Comp) {
@@ -38,7 +41,7 @@ exports.default = function (timings) {
 
                 var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
 
-                _this.timings = timings;
+                _this.options = options;
 
                 _this.state = {
                     stage: 'closed'
@@ -46,6 +49,7 @@ exports.default = function (timings) {
 
                 _this.openPopup = _this.openPopup.bind(_this);
                 _this.closePopup = _this.closePopup.bind(_this);
+                _this.clickOutside = _this.clickOutside.bind(_this);
                 _this._modal = _this._modal.bind(_this);
 
                 return _this;
@@ -61,7 +65,7 @@ exports.default = function (timings) {
 
                     if (stage !== 'closed') return null;
 
-                    var open = this.timings.open;
+                    var open = this.options.timings.open;
 
 
                     return this.setState({
@@ -85,7 +89,7 @@ exports.default = function (timings) {
                 value: function closePopup() {
                     var _this3 = this;
 
-                    var close = this.timings.close;
+                    var close = this.options.timings.close;
                     var stage = this.state.stage;
 
 
@@ -107,16 +111,23 @@ exports.default = function (timings) {
                     });
                 }
             }, {
+                key: 'clickOutside',
+                value: function clickOutside(e) {
+
+                    if (e.target.classList.contains('popModal')) return this.closePopup();
+                }
+            }, {
                 key: '_modal',
                 value: function _modal(props) {
                     var stage = this.state.stage;
+                    var outsideClickClose = this.options.outsideClickClose;
 
 
                     if (stage == 'closed') return null;
 
                     return _react2.default.createElement(
                         'div',
-                        { className: 'popModal ' + stage, key: '1' },
+                        { className: 'popModal ' + stage, key: '1', onClick: outsideClickClose && stage === 'open' ? this.clickOutside : null },
                         stage === 'open' ? _react2.default.createElement(
                             'button',
                             { onClick: this.closePopup, className: 'popModalClose', type: 'button' },

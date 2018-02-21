@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 
 // It's an generator
-export default ( timings ) => {
+export default ( options ) => {
 
-    if ( typeof timings === 'undefined' )
-        timings = {
-            open: 1000,
-            close: 500,
+    if ( typeof options === 'undefined' )
+        options = {
+            timings: {
+                open: 1000,
+                close: 500,
+            },
+            outsideClickClose: false,
         }
 
     return ( Comp ) => {
@@ -17,7 +20,7 @@ export default ( timings ) => {
 
                 super( props )
 
-                this.timings = timings
+                this.options = options
 
                 this.state = {
                     stage: 'closed',
@@ -26,6 +29,7 @@ export default ( timings ) => {
 
                 this.openPopup = this.openPopup.bind(this)
                 this.closePopup = this.closePopup.bind(this)
+                this.clickOutside = this.clickOutside.bind(this)
                 this._modal = this._modal.bind(this)
 
             }
@@ -37,7 +41,7 @@ export default ( timings ) => {
                 if ( stage !== 'closed' )
                     return null
 
-                const { open } = this.timings
+                const { open } = this.options.timings
 
                 return this.setState( {
 
@@ -61,7 +65,7 @@ export default ( timings ) => {
 
             closePopup () {
 
-                const { close } = this.timings
+                const { close } = this.options.timings
 
                 const { stage } = this.state
 
@@ -87,15 +91,23 @@ export default ( timings ) => {
 
             }
 
+            clickOutside (e) {
+
+                if ( e.target.classList.contains( 'popModal' ) )
+                    return this.closePopup()
+
+            }
+
             _modal ( props ) {
 
                 const { stage } = this.state
+                const { outsideClickClose } = this.options
 
                 if ( stage == 'closed' )
                     return null
 
                 return (
-                    <div className={ `popModal ${stage}` } key='1'>
+                    <div className={ `popModal ${stage}` } key='1' onClick={ ( outsideClickClose && stage === 'open' ) ? this.clickOutside : null }>
                         {
                             ( stage === 'open' ) ? (
 

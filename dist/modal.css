@@ -65,81 +65,81 @@
 @-moz-keyframes modalConntainerFadeIn {
   from {
     opacity: 0;
-    left: -100px;
+    top: -100px;
   }
   to {
     opacity: 1;
-    left: 0px;
+    top: 0px;
   }
 }
 @-webkit-keyframes modalConntainerFadeIn {
   from {
     opacity: 0;
-    left: -100px;
+    top: -100px;
   }
   to {
     opacity: 1;
-    left: 0px;
+    top: 0px;
   }
 }
 @-o-keyframes modalConntainerFadeIn {
   from {
     opacity: 0;
-    left: -100px;
+    top: -100px;
   }
   to {
     opacity: 1;
-    left: 0px;
+    top: 0px;
   }
 }
 @keyframes modalConntainerFadeIn {
   from {
     opacity: 0;
-    left: -100px;
+    top: -100px;
   }
   to {
     opacity: 1;
-    left: 0px;
+    top: 0px;
   }
 }
 @-moz-keyframes modalConntainerFadeOut {
   from {
     opacity: 1;
-    left: 0px;
+    top: 0px;
   }
   to {
     opacity: 0;
-    left: 100px;
+    top: 100px;
   }
 }
 @-webkit-keyframes modalConntainerFadeOut {
   from {
     opacity: 1;
-    left: 0px;
+    top: 0px;
   }
   to {
     opacity: 0;
-    left: 100px;
+    top: 100px;
   }
 }
 @-o-keyframes modalConntainerFadeOut {
   from {
     opacity: 1;
-    left: 0px;
+    top: 0px;
   }
   to {
     opacity: 0;
-    left: 100px;
+    top: 100px;
   }
 }
 @keyframes modalConntainerFadeOut {
   from {
     opacity: 1;
-    left: 0px;
+    top: 0px;
   }
   to {
     opacity: 0;
-    left: 100px;
+    top: 100px;
   }
 }
 .popModal {
