@@ -39,6 +39,10 @@ export default WithModal({
     open: 1000, // timeout for opening.
     close: 500, // timeout for closing.
   },
+  closeButton: {
+    show: true,
+    icon: 'fa fa-close',
+  },
   outsideClickClose: false // close on click outside of container.
 })( YourComponent )
 ```
@@ -62,7 +66,11 @@ import WithModal from 'pop-modal'
     timings: {
       open: 1000,
       close: 500,
-    }
+    },
+    closeButton: {
+      show: true,
+      icon: 'fa fa-close',
+    },
     outsideClickClose: true,
 })
 
@@ -111,7 +119,11 @@ export default WithModal( {
     timings: {
       open: 1000,
       close: 500,
-    }
+    },
+    closeButton: {
+      show: true,
+      icon: 'fa fa-close',
+    },
     outsideClickClose: true,
 } )( Page )
 ```

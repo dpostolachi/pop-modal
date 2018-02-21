@@ -10,12 +10,22 @@ export default ( options ) => {
                 close: 500,
             },
             outsideClickClose: false,
+            closeButton: {
+                show: true,
+                icon: 'fa fa-close',
+            }
         }
 
     if ( typeof options.timings === 'undefined' )
         options.timings = {
             open: 1000,
             close: 500,
+        }
+
+    if ( typeof options.closeButton === 'undefined' )
+        options.closeButton = {
+            show: true,
+            icon: 'fa fa-close',
         }
 
     if ( typeof options.outsideClickClose === 'undefined' )
@@ -110,7 +120,7 @@ export default ( options ) => {
             _modal ( props ) {
 
                 const { stage } = this.state
-                const { outsideClickClose } = this.options
+                const { outsideClickClose, closeButton } = this.options
 
                 if ( stage == 'closed' )
                     return null
@@ -118,10 +128,10 @@ export default ( options ) => {
                 return (
                     <div className={ `popModal ${stage}` } key='1' onClick={ ( outsideClickClose && stage === 'open' ) ? this.clickOutside : null }>
                         {
-                            ( stage === 'open' ) ? (
+                            ( closeButton.show && stage === 'open' ) ? (
 
                                 <button onClick={ this.closePopup } className='popModalClose' type='button'>
-                                    <span className='fa fa-close' />
+                                    <span className={ closeButton.icon } />
                                 </button>
 
                             ) : null

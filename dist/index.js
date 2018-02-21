@@ -28,12 +28,21 @@ exports.default = function (options) {
             open: 1000,
             close: 500
         },
-        outsideClickClose: false
+        outsideClickClose: false,
+        closeButton: {
+            show: true,
+            icon: 'fa fa-close'
+        }
     };
 
     if (typeof options.timings === 'undefined') options.timings = {
         open: 1000,
         close: 500
+    };
+
+    if (typeof options.closeButton === 'undefined') options.closeButton = {
+        show: true,
+        icon: 'fa fa-close'
     };
 
     if (typeof options.outsideClickClose === 'undefined') options.outsideClickClose = false;
@@ -127,7 +136,9 @@ exports.default = function (options) {
                 key: '_modal',
                 value: function _modal(props) {
                     var stage = this.state.stage;
-                    var outsideClickClose = this.options.outsideClickClose;
+                    var _options = this.options,
+                        outsideClickClose = _options.outsideClickClose,
+                        closeButton = _options.closeButton;
 
 
                     if (stage == 'closed') return null;
@@ -135,10 +146,10 @@ exports.default = function (options) {
                     return _react2.default.createElement(
                         'div',
                         { className: 'popModal ' + stage, key: '1', onClick: outsideClickClose && stage === 'open' ? this.clickOutside : null },
-                        stage === 'open' ? _react2.default.createElement(
+                        closeButton.show && stage === 'open' ? _react2.default.createElement(
                             'button',
                             { onClick: this.closePopup, className: 'popModalClose', type: 'button' },
-                            _react2.default.createElement('span', { className: 'fa fa-close' })
+                            _react2.default.createElement('span', { className: closeButton.icon })
                         ) : null,
                         _react2.default.createElement(
                             'div',
