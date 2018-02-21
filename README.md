@@ -28,14 +28,18 @@ to render something inside the modal just wrapp it inside Modal prop of Componen
 ```
 
 # configuring
-To add Modal to a React Component you must pass a config object with timeouts for opening/closing the modal and the Component that will receive modal's props. Don't forget to synchronize your timings with the ones from css.
+To add Modal to a React Component you must pass a config object with options for the modal and the Component that will receive modal's props. Don't forget to synchronize your timings with the ones from css.
+
 
 ```javascript
 import WithModal from 'pop-modal'
 
 export default WithModal({
-  open: 1000, //timeout for opening
-  close: 500, //timeout for closing
+  timings: {
+    open: 1000, // timeout for opening.
+    close: 500, // timeout for closing.
+  },
+  outsideClickClose: false // close on click outside of container.
 })( YourComponent )
 ```
 
@@ -55,8 +59,11 @@ import React, { Component } from 'react'
 import WithModal from 'pop-modal'
 
 @WithModal({
-    open: 1000,
-    close: 500,
+    timings: {
+      open: 1000,
+      close: 500,
+    }
+    outsideClickClose: true,
 })
 
 export default class Page extends Component {
@@ -83,11 +90,6 @@ using ES6
 import React, { Component } from 'react'
 import WithModal from 'pop-modal'
 
-@WithModal({
-    open: 1000,
-    close: 500,
-})
-
 class Page extends Component {
     render () {
         const { openPopup, Modal } = this.props
@@ -106,7 +108,10 @@ class Page extends Component {
 }
 
 export default WithModal( {
-  opem: 1000,
-  close: 500,
+    timings: {
+      open: 1000,
+      close: 500,
+    }
+    outsideClickClose: true,
 } )( Page )
 ```
