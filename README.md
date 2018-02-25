@@ -26,35 +26,49 @@ to render something inside the modal just wrapp it inside Modal prop of Componen
 }
 ```
 
-# configuring
-To add Modal to a React Component you must pass a config object with options for the modal and the Component that will receive modal's props. Don't forget to synchronize your timings with the ones from css.
+# usage
+To add Modal to a React Component you must pass the Component that will receive modal's props.
 
 
 ```javascript
 import WithModal from 'pop-modal'
 
-export default WithModal({
-  timings: {
-    open: 1000, // timeout for opening.
-    close: 500, // timeout for closing.
-  },
-  closeButton: {
-    show: true,
-    icon: 'fa fa-close',
-  },
-  outsideClickClose: false // close on click outside of container.
-})( YourComponent )
+export default WithModal( YourComponent )
+```
+
+# configuring modal
+To configure Modal's behaviour you can pass props to it.
+
+Below is a table of props it accepts.
+
+| PropName | Type | Description | Default | Required |
+| -------- |----- | ----------- | ------- | -------- |
+| onClose | function | A function that will be called once the modal has been closed. | Null | false |
+| onOpen | function | A function that will be called once the modal has been opened. | Null | false |
+| openMs | number | Timeout in ms for modal opening. | 1000 | false |
+| closeMs | number | Timeout in ms for modal closing. | 500 | false |
+| showBtn | boolean | Display close button or no. | true | false |
+| btnClassName | string | Close button's className. | 'fa fa-close' | false |
+| outsideClickClose | boolean | Option to close modal if there is an click outside of it's container | false | false |
+
+Example:
+
+```javascript
+  const { Modal } = this.props
+  ...
+  return (
+  <Modal onClose={ () => { console.log('closed') } } openMs={ 1000 } closeMs={ 1000 }>
+    <h1>Hello</h1>
+  </Modal>
+  
 ```
 
 # opening and closing
-The react component that is wrapped in `pop-modal` gets two props for closing and opening: `openPopup` and `closePopup` they both return a Promise that is resolved after the stage of modal has changed.
+The react component that is wrapped in `pop-modal` gets two props for closing and opening: `openPopup` and `closePopup`.
 
 Example:
 ```javascript
-    this.props.closePopup() // Closes the popup
-    .then( () => {
-        // Code here will be executed after the modal has been closed. Or you can just ignore the whole ".then" stuff.
-    } )
+    this.props.openPopup() // Opens the popup
 ```
 
 
@@ -73,17 +87,7 @@ using decorators
 import React, { Component } from 'react'
 import WithModal from 'pop-modal'
 
-@WithModal({
-    timings: {
-      open: 1000,
-      close: 500,
-    },
-    closeButton: {
-      show: true,
-      icon: 'fa fa-close',
-    },
-    outsideClickClose: true,
-})
+@WithModal
 
 export default class Page extends Component {
     render () {
@@ -94,7 +98,7 @@ export default class Page extends Component {
                 <button className='btn btn-primary' type='button' onClick={
                     () => { openPopup() }
                 }>Open modal</button>
-                <Modal>
+                <Modal outsideClickClose>
                     <h1>Hello from Pop Modal</h1>
                 </Modal>
             </div>
@@ -118,7 +122,7 @@ class Page extends Component {
                 <button className='btn btn-primary' type='button' onClick={
                     () => { openPopup() }
                 }>Open modal</button>
-                <Modal>
+                <Modal outsideClickClose>
                     <h1>Hello from Pop Modal</h1>
                 </Modal>
             </div>
@@ -126,15 +130,5 @@ class Page extends Component {
     }
 }
 
-export default WithModal( {
-    timings: {
-      open: 1000,
-      close: 500,
-    },
-    closeButton: {
-      show: true,
-      icon: 'fa fa-close',
-    },
-    outsideClickClose: true,
-} )( Page )
+export default WithModal( Page )
 ```
