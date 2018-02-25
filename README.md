@@ -57,9 +57,10 @@ Example:
   const { Modal } = this.props
   ...
   return (
-  <Modal onClose={ () => { console.log('closed') } } openMs={ 1000 } closeMs={ 1000 }>
-    <h1>Hello</h1>
-  </Modal>
+    <Modal onClose={ () => { console.log('closed') } } openMs={ 1000 } closeMs={ 1000 }>
+      <h1>Hello</h1>
+    </Modal>
+  )
   
 ```
 
