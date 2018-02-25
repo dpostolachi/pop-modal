@@ -1,5 +1,5 @@
 # pop-modal
-A simple adaptive React Popup Modal. Also works fine with server side rendering of React.
+A simple adaptive React Popup Modal. Also works fine with server side rendering of React. It's stable and ready for production code.
 
 # demo
 [Demo on heroku](http://popmodal.herokuapp.com/)
