@@ -1,7 +1,4 @@
-## 0.3.1
+## 1.0.0
 
-* Now `openPopup` and `closePopup` now returns a Promise.
-
-The purpose of this is to make the popup more flexible, so now you can do something after the modal stage has been changed ( closed, opened ) without breaking the transitions.
-
-* Some cleaning of useless code.
+* Now `pop-modal` takes only the component and all options are passed to Modal prop.
+* Added two props `onClose` and `onOpen` to do stuff after opening/closing modal.
