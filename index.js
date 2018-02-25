@@ -55,28 +55,34 @@ export default ( options ) => {
 
             openPopup () {
 
-                const { stage } = this.state
+                return new Promise( ( resolve ) => {
 
-                if ( stage !== 'closed' )
-                    return null
+                    const { stage } = this.state
 
-                const { open } = this.options.timings
+                    if ( stage !== 'closed' )
+                        return null
 
-                return this.setState( {
+                    const { open } = this.options.timings
 
-                    stage: 'opening',
+                    return this.setState( {
 
-                } , () => {
+                        stage: 'opening',
 
-                    return setTimeout( () => {
+                    } , () => {
 
-                        this.setState( {
+                        return setTimeout( () => {
 
-                            stage: 'open',
+                            this.setState( {
 
-                        } )
+                                stage: 'open',
 
-                    } , open )
+                            }, () => {
+                                resolve()
+                            } )
+
+                        } , open )
+
+                    } )
 
                 } )
 
@@ -84,29 +90,35 @@ export default ( options ) => {
 
             closePopup () {
 
-                const { close } = this.options.timings
+                return new Promise( ( resolve ) => {
 
-                const { stage } = this.state
+                    const { close } = this.options.timings
 
-                if ( stage !== 'open' )
-                    return null
+                    const { stage } = this.state
 
-                return this.setState( {
+                    if ( stage !== 'open' )
+                        return null
 
-                    stage: 'closing'
+                    return this.setState( {
 
-                } , () => {
-                    return setTimeout( () => {
+                        stage: 'closing'
 
-                        this.setState( {
+                    } , () => {
+                        return setTimeout( () => {
 
-                            stage: 'closed',
+                            this.setState( {
 
-                        })
+                                stage: 'closed',
 
-                    }, close )
+                            }, () => {
+                                resolve()
+                            } )
 
-                } )
+                        }, close )
+
+                    } )
+
+                })
 
             }
 
@@ -145,7 +157,7 @@ export default ( options ) => {
 
             render () {
 
-                return <Comp { ...this.props } Modal={ this._modal } modalState={ this.state.stage } setContent={ this.setContent } openPopup={ this.openPopup } closePopup={ this.closePopup } />
+                return <Comp { ...this.props } Modal={ this._modal } openPopup={ this.openPopup } closePopup={ this.closePopup } />
 
             }
 

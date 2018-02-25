@@ -76,28 +76,32 @@ exports.default = function (options) {
                 value: function openPopup() {
                     var _this2 = this;
 
-                    var stage = this.state.stage;
+                    return new Promise(function (resolve) {
+                        var stage = _this2.state.stage;
 
 
-                    if (stage !== 'closed') return null;
+                        if (stage !== 'closed') return null;
 
-                    var open = this.options.timings.open;
+                        var open = _this2.options.timings.open;
 
 
-                    return this.setState({
+                        return _this2.setState({
 
-                        stage: 'opening'
+                            stage: 'opening'
 
-                    }, function () {
+                        }, function () {
 
-                        return setTimeout(function () {
+                            return setTimeout(function () {
 
-                            _this2.setState({
+                                _this2.setState({
 
-                                stage: 'open'
+                                    stage: 'open'
 
-                            });
-                        }, open);
+                                }, function () {
+                                    resolve();
+                                });
+                            }, open);
+                        });
                     });
                 }
             }, {
@@ -105,25 +109,29 @@ exports.default = function (options) {
                 value: function closePopup() {
                     var _this3 = this;
 
-                    var close = this.options.timings.close;
-                    var stage = this.state.stage;
+                    return new Promise(function (resolve) {
+                        var close = _this3.options.timings.close;
+                        var stage = _this3.state.stage;
 
 
-                    if (stage !== 'open') return null;
+                        if (stage !== 'open') return null;
 
-                    return this.setState({
+                        return _this3.setState({
 
-                        stage: 'closing'
+                            stage: 'closing'
 
-                    }, function () {
-                        return setTimeout(function () {
+                        }, function () {
+                            return setTimeout(function () {
 
-                            _this3.setState({
+                                _this3.setState({
 
-                                stage: 'closed'
+                                    stage: 'closed'
 
-                            });
-                        }, close);
+                                }, function () {
+                                    resolve();
+                                });
+                            }, close);
+                        });
                     });
                 }
             }, {
@@ -162,7 +170,7 @@ exports.default = function (options) {
                 key: 'render',
                 value: function render() {
 
-                    return _react2.default.createElement(Comp, _extends({}, this.props, { Modal: this._modal, modalState: this.state.stage, setContent: this.setContent, openPopup: this.openPopup, closePopup: this.closePopup }));
+                    return _react2.default.createElement(Comp, _extends({}, this.props, { Modal: this._modal, openPopup: this.openPopup, closePopup: this.closePopup }));
                 }
             }]);
 

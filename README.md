@@ -47,6 +47,18 @@ export default WithModal({
 })( YourComponent )
 ```
 
+# opening and closing
+The react component that is wrapped in `pop-modal` gets two props for closing and opening: `openPopup` and `closePopup` they both return a Promise that is resolved after the stage of modal has changed.
+
+Example:
+```javascript
+    this.props.closePopup() // Closes the popup
+    .then( () => {
+        // Code here will be executed after the modal has been closed. Or you can just ignore the whole ".then" stuff.
+    } )
+```
+
+
 # css
 You can find the css required by the modal in the 'pop-modal/dist/modal.css' file in your node_modules. It's very likely that you will need to do some adjustments to this css file so it's better to just copy it from here and edit it the way you need it.
 
