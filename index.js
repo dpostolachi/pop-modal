@@ -21,7 +21,7 @@ export default ( Comp ) => {
             this.closeMs = 500
             this.showBtn = true
             this.btnClassName = 'fa fa-close'
-            this.outsideClickClose = true
+            this.outsideClickClose = false
 
 
             this.openPopup = this.openPopup.bind(this)

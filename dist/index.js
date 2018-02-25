@@ -42,7 +42,7 @@ exports.default = function (Comp) {
             _this.closeMs = 500;
             _this.showBtn = true;
             _this.btnClassName = 'fa fa-close';
-            _this.outsideClickClose = true;
+            _this.outsideClickClose = false;
 
             _this.openPopup = _this.openPopup.bind(_this);
             _this.closePopup = _this.closePopup.bind(_this);
