@@ -1,165 +1,146 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-// It's an generator
-export default ( options ) => {
+// It's an decorator
 
-    if ( typeof options === 'undefined' )
-        options = {
-            timings: {
-                open: 1000,
-                close: 500,
-            },
-            outsideClickClose: false,
-            closeButton: {
-                show: true,
-                icon: 'fa fa-close',
-            }
-        }
+export default ( Comp ) => {
 
-    if ( typeof options.timings === 'undefined' )
-        options.timings = {
-            open: 1000,
-            close: 500,
-        }
+    return class Modal extends PureComponent {
 
-    if ( typeof options.closeButton === 'undefined' )
-        options.closeButton = {
-            show: true,
-            icon: 'fa fa-close',
-        }
+        constructor ( props ) {
 
-    if ( typeof options.outsideClickClose === 'undefined' )
-        options.outsideClickClose = false
+            super( props )
 
-    return ( Comp ) => {
-
-        return class Modal extends Component {
-
-            constructor ( props ) {
-
-                super( props )
-
-                this.options = options
-
-                this.state = {
-                    stage: 'closed',
-                }
-
-
-                this.openPopup = this.openPopup.bind(this)
-                this.closePopup = this.closePopup.bind(this)
-                this.clickOutside = this.clickOutside.bind(this)
-                this._modal = this._modal.bind(this)
-
+            this.state = {
+                stage: 'closed',
             }
 
-            openPopup () {
+            // Default values
+            this.onClose = null
+            this.onOpen = null
+            this.openMs = 1000
+            this.closeMs = 500
+            this.showBtn = true
+            this.btnClassName = 'fa fa-close'
+            this.outsideClickClose = true
 
-                return new Promise( ( resolve ) => {
 
-                    const { stage } = this.state
+            this.openPopup = this.openPopup.bind(this)
+            this.closePopup = this.closePopup.bind(this)
+            this.clickOutside = this.clickOutside.bind(this)
+            this._modal = this._modal.bind(this)
 
-                    if ( stage !== 'closed' )
-                        return null
+        }
 
-                    const { open } = this.options.timings
+        openPopup () {
 
-                    return this.setState( {
+                const { stage } = this.state
 
-                        stage: 'opening',
+                if ( stage !== 'closed' )
+                    return null
 
-                    } , () => {
+                return this.setState( {
 
-                        return setTimeout( () => {
+                    stage: 'opening',
 
-                            this.setState( {
+                } , () => {
 
-                                stage: 'open',
+                    setTimeout( () => {
 
-                            }, () => {
-                                resolve()
-                            } )
+                        return this.setState( {
+                            stage: 'open',
+                        }, () => {
+                            if ( this.onOpen )
+                                this.onOpen()
+                        } )
 
-                        } , open )
-
-                    } )
+                    } , this.openMs )
 
                 } )
 
-            }
+        }
 
-            closePopup () {
+        closePopup () {
 
-                return new Promise( ( resolve ) => {
+            const { stage } = this.state
 
-                    const { close } = this.options.timings
+            if ( stage !== 'open' )
+                return null
 
-                    const { stage } = this.state
+            return this.setState( {
+                stage: 'closing'
+            } , () => {
 
-                    if ( stage !== 'open' )
-                        return null
+                return setTimeout( () => {
 
-                    return this.setState( {
-
-                        stage: 'closing'
-
-                    } , () => {
-                        return setTimeout( () => {
-
-                            this.setState( {
-
-                                stage: 'closed',
-
-                            }, () => {
-                                resolve()
-                            } )
-
-                        }, close )
-
+                    this.setState( {
+                        stage: 'closed',
+                    }, () => {
+                        if ( this.onClose )
+                            this.onClose()
                     } )
 
-                })
+                }, this.closeMs )
 
-            }
+            } )
 
-            clickOutside (e) {
+        }
 
-                if ( e.target.classList.contains( 'popModal' ) )
-                    return this.closePopup()
+        clickOutside (e) {
 
-            }
+            if ( e.target.classList.contains( 'popModal' ) )
+                return this.closePopup()
 
-            _modal ( props ) {
+        }
 
-                const { stage } = this.state
-                const { outsideClickClose, closeButton } = this.options
+        _modal ( props ) {
 
-                if ( stage == 'closed' )
-                    return null
+            const { stage } = this.state
 
-                return (
-                    <div className={ `popModal ${stage}` } key='1' onClick={ ( outsideClickClose && stage === 'open' ) ? this.clickOutside : null }>
-                        {
-                            ( closeButton.show && stage === 'open' ) ? (
+            if ( typeof props.onClose === 'function' )
+                this.onClose = props.onClose
 
-                                <button onClick={ this.closePopup } className='popModalClose' type='button'>
-                                    <span className={ closeButton.icon } />
-                                </button>
+            if ( typeof props.onOpen === 'function' )
+                this.onOpen = props.onOpen
 
-                            ) : null
-                        }
-                        <div className='popModalContainer'>
-                            { props.children }
-                        </div>
+            if ( typeof props.openMs === "number" )
+                this.openMs = props.openMs
+
+            if ( typeof props.closeMs === 'number' )
+                this.closeMs = props.closeMs
+
+            if ( typeof props.showBtn === 'boolean' )
+                this.showBtn = props.showBtn
+
+            if ( typeof props.btnClassName === 'string' )
+                this.btnClassName = props.btnClassName
+
+            if ( typeof props.outsideClickClose === 'boolean' )
+                this.outsideClickClose = props.outsideClickClose
+
+            if ( stage === 'closed' )
+                return null
+
+            return (
+                <div className={ `popModal ${stage}` } key='1' onClick={ ( this.outsideClickClose && stage === 'open' ) ? this.clickOutside : null }>
+                    {
+                        ( this.showBtn && stage === 'open' ) ? (
+
+                            <button onClick={ this.closePopup } className='popModalClose' type='button'>
+                                <span className={ this.btnClassName } />
+                            </button>
+
+                        ) : null
+                    }
+                    <div className='popModalContainer'>
+                        { props.children }
                     </div>
-                )
-            }
+                </div>
+            )
+        }
 
-            render () {
+        render () {
 
-                return <Comp { ...this.props } Modal={ this._modal } openPopup={ this.openPopup } closePopup={ this.closePopup } />
-
-            }
+            return <Comp { ...this.props } Modal={ this._modal } modalStage={ this.state.stage } openPopup={ this.openPopup } closePopup={ this.closePopup } />
 
         }
 
