@@ -43,8 +43,8 @@ Below is a table of props it accepts.
 
 | PropName | Type | Description | Default | Required |
 | -------- |----- | ----------- | ------- | -------- |
-| onClose | function | A function that will be called once the modal has been closed. | Null | false |
-| onOpen | function | A function that will be called once the modal has been opened. | Null | false |
+| onClose | function | An callback function that will be called once the modal has been closed. | Null | false |
+| onOpen | function | An callback function that will be called once the modal has been opened. | Null | false |
 | openMs | number | Timeout in ms for modal opening. | 1000 | false |
 | closeMs | number | Timeout in ms for modal closing. | 500 | false |
 | showBtn | boolean | Display close button or no. | true | false |
