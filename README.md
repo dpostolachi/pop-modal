@@ -61,12 +61,11 @@ Example:
       <h1>Hello</h1>
     </Modal>
   )
-  
+
 ```
 
 # opening and closing
-The react component that is wrapped in `pop-modal` gets two props for closing and opening: `openPopup` and `closePopup`.
-
+The react component that is wrapped in `pop-modal` gets two props for closing and opening: `openPopup` and `closePopup`, openPopup can take an initial stage to be opened in.
 Example:
 ```javascript
     this.props.openPopup() // Opens the popup
