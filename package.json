@@ -1,6 +1,6 @@
 {
   "name": "pop-modal",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A simple react popup modal",
   "main": "./dist/index.js",
   "scripts": {

@@ -1,8 +1,6 @@
 import React, { PureComponent } from 'react'
-import { NOTINITIALIZED } from 'dns';
 
 // It's an decorator
-
 export default ( Comp ) => {
 
     return class Modal extends PureComponent {
