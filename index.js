@@ -11,6 +11,7 @@ export default ( Comp ) => {
 
             this.state = {
                 stage: 'closed',
+                ready: false,
             }
 
             // Default values
@@ -89,6 +90,14 @@ export default ( Comp ) => {
 
         }
 
+        componentDidMount() {
+
+            return this.setState( {
+                ready: true,
+            } )
+
+        }
+
         clickOutside (e) {
 
             if ( e.target.classList.contains( 'popModal' ) )
@@ -98,7 +107,9 @@ export default ( Comp ) => {
 
         _modal ( props ) {
 
-            const { stage } = this.state
+            const { ready } = this.state
+
+            const stage = ( !ready && typeof props.defaultOpen !== 'undefined' && props.defaultOpen ) ? 'open' : this.state.stage
 
             if ( typeof props.onClose === 'function' )
                 this.onClose = props.onClose

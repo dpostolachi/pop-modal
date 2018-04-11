@@ -32,7 +32,8 @@ exports.default = function (Comp) {
             var _this = _possibleConstructorReturn(this, (Modal.__proto__ || Object.getPrototypeOf(Modal)).call(this, props));
 
             _this.state = {
-                stage: 'closed'
+                stage: 'closed',
+                ready: false
 
                 // Default values
             };_this.onClose = null;
@@ -109,6 +110,14 @@ exports.default = function (Comp) {
                 });
             }
         }, {
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+
+                return this.setState({
+                    ready: true
+                });
+            }
+        }, {
             key: 'clickOutside',
             value: function clickOutside(e) {
 
@@ -117,8 +126,10 @@ exports.default = function (Comp) {
         }, {
             key: '_modal',
             value: function _modal(props) {
-                var stage = this.state.stage;
+                var ready = this.state.ready;
 
+
+                var stage = !ready && typeof props.defaultOpen !== 'undefined' && props.defaultOpen ? 'open' : this.state.stage;
 
                 if (typeof props.onClose === 'function') this.onClose = props.onClose;
 

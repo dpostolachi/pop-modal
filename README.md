@@ -49,7 +49,8 @@ Below is a table of props it accepts.
 | closeMs | number | Timeout in ms for modal closing. | 500 | false |
 | showBtn | boolean | Display close button or no. | true | false |
 | btnClassName | string | Close button's className. | 'fa fa-close' | false |
-| outsideClickClose | boolean | Option to close modal if there is an click outside of it's container | false | false |
+| outsideClickClose | boolean | Option to close modal if there is an click outside of it's container. | false | false |
+| defaultOpen | boolean | Used to render modal in open stage, skipping opening stage. | false | false |
 
 Example:
 
