@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { NOTINITIALIZED } from 'dns';
 
 // It's an decorator
 
@@ -31,7 +32,12 @@ export default ( Comp ) => {
 
         }
 
-        openPopup () {
+        openPopup ( initialStage = null ) {
+
+                if ( initialStage )
+                    return this.setState( {
+                        stage: initialStage,
+                    } )
 
                 const { stage } = this.state
 
