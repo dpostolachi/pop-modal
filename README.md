@@ -50,7 +50,7 @@ Below is a table of props it accepts.
 | showBtn | boolean | Display close button or no. | true | false |
 | btnClassName | string | Close button's className. | 'fa fa-close' | false |
 | outsideClickClose | boolean | Option to close modal if there is an click outside of it's container. | false | false |
-| defaultOpen | boolean | Used to render modal in open stage, skipping opening stage. | false | false |
+| defaultOpen | boolean | Used to render modal in open stage, skipping opening stage. It can be used for Server Side Rendering  when you need the modal to be open from the start. | false | false |
 
 Example:
 
