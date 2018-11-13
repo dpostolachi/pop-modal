@@ -79,7 +79,7 @@ var _default = function _default(Comp) {
         _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onOpen", null);
 
         _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "clickOutside", function (e) {
-          if (!e.target.classList.contains('popModal')) return _this.closePopup();
+          if (e.target.classList.contains('popModal')) return _this.closePopup();
         });
 
         _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "_modal", function (props) {

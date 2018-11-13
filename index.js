@@ -112,7 +112,7 @@ export default ( Comp: any ) => {
 
         clickOutside = ( e: Object ) => {
 
-            if ( !e.target.classList.contains( 'popModal' ) )
+            if ( e.target.classList.contains( 'popModal' ) )
                 return this.closePopup()
 
         }
