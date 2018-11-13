@@ -34,7 +34,7 @@ type State = {
 // It's an decorator
 export default ( Comp: any ) => {
 
-    return class Modal extends PureComponent<any, State> {
+    return class Modal extends PureComponent<Props, State> {
 
         state: State = {
             stage: 'closed',
@@ -48,7 +48,7 @@ export default ( Comp: any ) => {
 
         openPopup ( initialStage?: string = '' ) {
 
-                if ( initialStage )
+                if ( initialStage && typeof initialStage === 'string' )
                     return this.setState( {
                         stage: initialStage,
                     } )
@@ -83,9 +83,6 @@ export default ( Comp: any ) => {
 
             const { stage } = this.state
 
-            if ( stage !== 'open' )
-                return null
-
             return this.setState( {
                 stage: 'closing'
             } , () => {
@@ -113,30 +110,30 @@ export default ( Comp: any ) => {
 
         }
 
-        clickOutside ( e: Object ) {
+        clickOutside = ( e: Object ) => {
 
-            if ( e.target.classList.contains( 'popModal' ) )
+            if ( !e.target.classList.contains( 'popModal' ) )
                 return this.closePopup()
 
         }
 
-        _modal ( props: Props ) {
+        _modal = ( props: Props ) => {
 
             const { ready } = this.state
 
             const newProps = { ...defaultProps, ...props }
 
-            const stage = ( !ready && newProps.defaultOpen ) ? this.setState({  stage: 'open' }) || 'open' : this.state.stage
-
-
-            this.onClose = newProps.onClose || null
-            this.onOpen = newProps.onOpen || null
+            const stage = ( !ready && newProps.defaultOpen ) ? 'open' : this.state.stage
 
             if ( stage === 'closed' )
                 return null
 
+            this.onClose = newProps.onClose || null
+            this.onOpen = newProps.onOpen || null
+
+
             return (
-                <div className={ `popModal ${stage}` } key='1' onClick={ ( newProps.outsideClickClose && stage === 'open' ) ? this.clickOutside.bind( this ) : null }>
+                <div className={ `popModal ${stage}` } onClick={ ( newProps.outsideClickClose && stage === 'open' ) ? this.clickOutside : null }>
                     {
                         ( newProps.showBtn && stage === 'open' ) ? (
 

@@ -1,3 +1,6 @@
+## 1.1.5
+* Fixes
+
 ## 1.1.2
 * Added defaultOpen prop for Modal.
 

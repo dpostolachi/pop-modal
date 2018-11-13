@@ -1,15 +1,15 @@
 {
   "name": "pop-modal",
-  "version": "1.1.3",
+  "version": "1.1.5",
   "description": "A simple react popup modal",
   "main": "./dist/index.js",
-  "scripts": {
-    "build": "babel index.js --out-dir dist && stylus ./src/modal.styl --out ./dist",
-    "prepublish": "yarn run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/voodoo-child/pop-modal.git"
+  },
+  "scripts": {
+    "build": "babel index.js --out-dir dist && stylus ./src/modal.styl --out ./dist",
+    "prepublish": "yarn run build"
   },
   "author": "",
   "license": "ISC",
@@ -18,16 +18,16 @@
   },
   "homepage": "https://github.com/voodoo-child/pop-modal#readme",
   "dependencies": {
-    "react": "^16.3.2"
+    "react": "^16.6.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-es2015": "^6.24.1",
-    "babel-preset-flow": "^6.23.0",
-    "babel-preset-react": "^6.24.1",
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
     "flow-bin": "^0.72.0",
     "stylus": "^0.54.5"
   }

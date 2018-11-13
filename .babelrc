@@ -1,4 +1,16 @@
 {
-    "presets": [ "flow", "es2015", "react" ],
-    "plugins": [ "transform-class-properties", "transform-object-rest-spread" ]
+    "presets": [
+        "@babel/preset-flow",
+        "@babel/preset-react",
+        [
+            "@babel/preset-env",
+            {
+              "targets": "> 0.25%, not dead"
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-proposal-object-rest-spread"
+    ]
 }
